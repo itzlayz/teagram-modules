@@ -3,7 +3,9 @@ from pyrogram import Client, types, enums
 
 @loader.module('ChatInfo', author='Layz')
 class ChatInfoMod(loader.Module):
+    """ChatInfo предоставит информацию о чате или группе"""
     async def chat_cmd(self, app: Client, message: types.Message):
+        """Дает список администраторов и участников группы"""
         chatId = message.chat.id
 
         bots = [bot.user.username async for bot in app.get_chat_members(
