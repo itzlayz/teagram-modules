@@ -66,6 +66,7 @@ class ImageAIMod(loader.Module):
     """Сгенерируйте любое фото с помощью AI"""
    
     async def generateImage_cmd(self, app: Client, message: types.Message, args: str):
+        """Генерация фото"""
         key = self.db.get('imageai', 'key')
 
         if not key:
@@ -89,6 +90,7 @@ class ImageAIMod(loader.Module):
             )
     
     async def setKey_cmd(self, app: Client, message: types.Message, args: str):
+        """Поставить ключ api-prodia"""
         if not args:
             return await utils.answer(
                 message,
