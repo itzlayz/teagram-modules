@@ -10,6 +10,7 @@ class SafePassMod(loader.Module):
     """Модуль для безопасности паролей"""
 
     async def criteria_cmd(self, app: Client, message: types.Message, args: str):
+        """Оценка пароля от 0 до 5"""
         if not (password := args):
             return await utils.answer(message, 'Вы не указали пароль')
 
