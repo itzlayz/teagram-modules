@@ -5,7 +5,7 @@ import random
 from pyrogram import Client, types
 from .. import loader, utils
 
-@loader.module(name="SafePass")
+@loader.module(name="SafePass", author='itzlayz')
 class SafePassMod(loader.Module):
     """Модуль для безопасности паролей"""
 
