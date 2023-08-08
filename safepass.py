@@ -25,6 +25,7 @@ class SafePassMod(loader.Module):
         await utils.answer(message, f'Оценка пароля {sum(criteria)}/5')
 
     async def bestpass_cmd(self, app: Client, message: types.Message, args: str):
+        """Создание лучшего пароля"""
         try:
             length = int(args)
         except ValueError:
