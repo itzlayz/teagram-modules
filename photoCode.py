@@ -4,7 +4,7 @@ import io
 from .. import utils, loader
 from telethon import types
 
-@loader.module('PhotoCode', 'itzlayz', 1.1)
+@loader.module('PhotoCode', 'itzlayz', 1.2)
 class PhotoCodeMod(loader.Module):
     """Данный модуль превратит код в картинку"""
 
@@ -12,13 +12,13 @@ class PhotoCodeMod(loader.Module):
     async def makephoto(self, message: types.Message, args: str):
         """Сделать картинку"""
         if not args:
-            if not (args := (await message.get_reply_message())):
+            if not (reply := (await message.get_reply_message())):
                 return await utils.answer(
                     message, 
                     '❌ Вы не указали текст или реплай с текстом'
                 )
 
-        text = args.text.rstrip('`').lstrip('`')
+        text = args.rstrip('`').lstrip('`') or reply.text.rstrip('`').lstrip('`')
 
         params = 'theme=vsc-dark-plus&language=python&line-numbers=true&background-color=gray'
         url = 'https://code2img.vercel.app/api/to-image?' + params
