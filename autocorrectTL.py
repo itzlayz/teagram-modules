@@ -55,8 +55,7 @@ class AutoCorrectMod(loader.Module):
                 validators.String()
             )
         )
-    
-    @loader.on(lambda _, msg: msg.out)
+        
     async def watcher(self, message: types.Message):
         if not self.config["status"]:
             return
