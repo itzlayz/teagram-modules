@@ -57,6 +57,8 @@ class AutoCorrectMod(loader.Module):
         )
         
     async def watcher(self, message: types.Message):
+        if not msg.out:
+            return
         if not self.config["status"]:
             return
         if self.config["is_ping"]:
