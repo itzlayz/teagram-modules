@@ -57,7 +57,7 @@ class AutoCorrectMod(loader.Module):
         )
         
     async def watcher(self, message: types.Message):
-        if not msg.out:
+        if not message.out:
             return
         if not self.config["status"]:
             return
