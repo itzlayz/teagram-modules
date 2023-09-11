@@ -2,3 +2,4 @@ autocorrectTL
 pastebin
 photocode
 teachat
+customgpt
