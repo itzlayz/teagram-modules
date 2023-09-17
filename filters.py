@@ -22,7 +22,9 @@ class FiltersMod(loader.Module):
             validators.Integer(minimum=0.0, maximum=10.0)
         )
     )
-    async def filter_cmd(self, message: types.Message, args: str):
+
+    @loader.command()
+    async def addfcmd(self, message: types.Message, args: str):
         """добавить фильтр"""
         filters = self.db.get("Filters", "filters", {})
         data = json.loads(str(filters))
@@ -37,7 +39,8 @@ class FiltersMod(loader.Module):
         self.db.set("Filters", "filters", upd)
         await utils.answer(message, f"✅ Фильтр <b>{args}</b> сохранен.")
 
-    async def stopall_cmd(self, message: types.Message, args: str):
+    @loader.command()
+    async def stopall(self, message: types.Message, args: str):
         """остановить фильтры"""
         filters = self.db.get("Filters", "filters", {})
         if message.chat.id not in filters:
