@@ -13,15 +13,15 @@ from ..types import Config, ConfigValue
 @loader.module(name="Filters", author="itzlayz")
 class FiltersMod(loader.Module):
   """импортированы фильтры из известного юзербота FTG"""
-  def __init__(self):
-    self.config = Config(
-        ConfigValue(
-            'waitTime',
-            0.0,
-            0.0,
-            validators.Integer(minimum=0.0, maximum=10.0)
+    def __init__(self):
+        self.config = Config(
+                ConfigValue(
+                'waitTime',
+                0.0,
+                0.0,
+                validators.Integer(minimum=0.0, maximum=10.0)
+            )
         )
-    )
 
     @loader.command()
     async def addfcmd(self, message: types.Message, args: str):
@@ -38,7 +38,7 @@ class FiltersMod(loader.Module):
         upd = json.dumps(data)
         self.db.set("Filters", "filters", upd)
         await utils.answer(message, f"✅ Фильтр <b>{args}</b> сохранен.")
-
+    
     @loader.command()
     async def stopall(self, message: types.Message, args: str):
         """остановить фильтры"""
@@ -51,10 +51,10 @@ class FiltersMod(loader.Module):
         upd = json.dumps(data)
         self.db.set("Filters", "filters", upd)
         await utils.answer(message, f"✅ Фильтры чата удалены")
-
+    
     async def watcher(self, message: types.Message):
         filters = self.db.get("Filters", "filters", {})
         if str(message.chat.id) in filters:
             if message.text in filters:
                 await message.reply(filters[message.chat.id][message.text])
-    
+
