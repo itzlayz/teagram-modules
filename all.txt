@@ -3,3 +3,4 @@ pastebin
 photocode
 teachat
 customgpt
+quotes
