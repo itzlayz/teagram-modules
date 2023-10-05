@@ -58,7 +58,7 @@ class CustomGPTMod(loader.Module):
                 '❌ <b>Ошибка, вы не указали промпт</b>'
             )
         
-        if not self.config['apikey']:
+        if not self.db.get('customgpt', 'apikey', ''):
             return await utils.answer(
                 message,
                 '❌ <b>Ошибка, вы не указали ключ</b>'
@@ -101,7 +101,7 @@ class CustomGPTMod(loader.Module):
                 '❌ <b>Ошибка, вы не указали промпт</b>'
             )
         
-        if not self.config['apikey']:
+        if not self.db.get('customgpt', 'apikey', ''):
             return await utils.answer(
                 message,
                 '❌ <b>Ошибка, вы не указали ключ</b>'
@@ -140,7 +140,7 @@ class CustomGPTMod(loader.Module):
     async def prodia(self, message, args):
         await utils.answer(message, 'Генерирую')
         
-        key = self.config['prodiakey']
+        key = self.db.get('customgpt', 'prodiakey', '')
         url = "https://api.prodia.com/v1/sd/generate"
         models = [
             "anythingv3_0-pruned.ckpt [2700c435]",
@@ -159,14 +159,15 @@ class CustomGPTMod(loader.Module):
             "Realistic_Vision_V5.0.safetensors [614d1063]"
             ]
         
-        if self.config['prodiamodel'] and self.config['prodiamodel'] not in models:
+        model = self.db.get('customgpt', 'prodiamodel', '')
+        if model and model not in models:
             return await utils.answer(
                 message,
                 '❌ Вы указали неправильную модель, список: ' + '\n'.join(model for model in models)
             )
         
         payload = {
-            "model": self.config['prodiamodel'] or choice(models),
+            "model": model or choice(models),
             "prompt": args,
             "negative_prompt": "badly drawn",
             "steps": 30,
