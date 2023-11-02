@@ -14,7 +14,7 @@ from ..types import Config, ConfigValue
 import requests
 
 @loader.module(name="auto-correct-tl", author="itzlayz", version=1.2)
-@loader.warning("Module may interfere with userbot")
+@loader.warning
 class AutoCorrectMod(loader.Module):
     """❤️ Автоматическое исправление текста."""
     def __init__(self):
