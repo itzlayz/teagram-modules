@@ -6,3 +6,5 @@ customgpt
 quotes
 fakedata
 circles
+teledocs
+teatranslator
