@@ -46,7 +46,11 @@ class ChatGPTMod(loader.Module):
 
         await utils.answer(message, self.strings("generating"))
 
-        client = openai.AsyncOpenAI(api_key=self.get("openai_key"))
+        client = openai.AsyncOpenAI(
+            api_key=self.get("openai_key"), 
+            base_url=self.get("base_url")
+        )
+        
         response = await client.chat.completions.create(
             model=self.get("model"),
             messages=[{"role": "user", "content": args}]
